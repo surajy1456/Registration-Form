@@ -4,6 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reg Form</title>
+    <style>
+     
+        .regform{
+            width: 500px;
+            height: 600px;
+            text-align: center;
+            border: 10px solid black;
+        }
+    </style>
 </head>
 <body>
     <div class="regform">
