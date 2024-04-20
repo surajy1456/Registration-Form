@@ -40,7 +40,7 @@
             width: 460px;
             position: absolute;
             top: 266px;
-            left: 300px;
+            left: 340px;
             border-radius: 40px;
             border: transparent;
             background: transparent;
@@ -51,16 +51,19 @@
 
         #phone_number {
             height: 60px;
-            width: 460px;
+            width: 385px;
             position: absolute;
             top: 406px;
-            left: 450px;
+            left: 418px;
             border-radius: 40px;
             border: transparent;
             background: transparent;
             color: white;
             padding-left: 23px;
             font-size: 30px;
+        }
+        select{
+          background-color:black;
         }
 
         #country_code {
@@ -68,13 +71,13 @@
             width: 60px;
             position: absolute;
             top: 406px;
-            left: 360px;
+            left: 345px;
             border-radius: 40px;
             border: transparent;
             background: transparent;
             color: white;
-            padding-left: 23px;
-            font-size: 30px;
+            font-size: 20px;
+            text-align:center;
         }
 
         #for_email {
@@ -82,7 +85,7 @@
             width: 455px;
             position: absolute;
             top: 546px;
-            left: 310px;
+            left: 350px;
             border-radius: 40px;
             border: transparent;
             background: transparent;
@@ -96,7 +99,7 @@
             width: 460px;
             position: absolute;
             top: 480px;
-            right: 310px;
+            right: 350px;
             border-radius: 40px;
             border: transparent;
             background: transparent;
@@ -110,7 +113,7 @@
             width: 460px;
             position: absolute;
             top: 336px;
-            right: 310px;
+            right: 350px;
             border-radius: 40px;
             border: transparent;
             background: transparent;
@@ -164,7 +167,6 @@
                 height: 50px;
                 top: 50%;
                 left: 50%;
-                transform: translate(-50%, -50%);
             }
         }
 
@@ -199,7 +201,7 @@
 
     <div class="regform">
         <img src="vegasregistration.png" alt="">
-        <form action="" class="form">
+        <form action="./backend/data.php" class="form" method="POST">
             <div class="form-control">
                 <input type="text" name="name" id="for_name" placeholder="Name" required>
             </div>
@@ -209,7 +211,6 @@
                     <option value="1">USA (+1)</option>
                     <option value="44">UK (+44)</option>
                     <option value="91">IND (+91)</option>
-                    <!-- Add more options for other countries as needed -->
                 </select>
                 <input type="text" name="phone_number" id="phone_number" placeholder="Phone Number" required>
             </div>
