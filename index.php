@@ -20,7 +20,7 @@
             margin-bottom: 10px;
         }
 
-        .form-control input {}
+       
 
         .btn {
             text-align: center;
@@ -218,7 +218,7 @@
                 <input type="text" name="facebook_id" id="for_facebook" placeholder="facebook-id" required>
             </div>
             <div class="btn">
-                <input type="image" src="submit button.png" alt="Submit" id="submit-button" />
+                <input type="image" name="submit" src="submit button.png" alt="Submit" id="submit-button" />
             </div>
         </form>
     </div>
