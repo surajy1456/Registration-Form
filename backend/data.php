@@ -16,12 +16,14 @@ session_start();
 include 'connection.php';
 if (isset($_POST)) {
     $name = $_POST["name"];
+    $code = $_POST["selected_code"];
     $phone_number = $_POST["phone_number"];
+    $full_phone_number = $code ."-". $phone_number;
     $email = $_POST["email"];
     $telegram_id = $_POST["telegram_id"];
     $facebook_id = $_POST["facebook_id"];
 
-    $sql = "INSERT INTO `reg_user_data`(name,phone_number,email,telegram_id,facebook_id) VALUES('$name','$phone_number','$email',' $telegram_id','$facebook_id')";
+    $sql = "INSERT INTO `reg_user_data`(name,phone_number,email,telegram_id,facebook_id) VALUES('$name','$full_phone_number','$email',' $telegram_id','$facebook_id')";
     $result = mysqli_query($conn, $sql);
     if ($result) {
         

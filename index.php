@@ -247,7 +247,7 @@ session_start();
                 <input type="text" name="name" id="for_name" placeholder="Name" required>
             </div>
             <div class="form-control">
-                <select id="country_code" style="background-color: none; color: white;">
+                <select id="country_code" name="selected_code" style="background-color: none; color: white;">
                     <option value="1" selected>USA (+1)</option>
                     <option value="44" disabled hidden>UK (+44)</option>
                     <option value="91" disabled hidden>IND (+91)</option>
@@ -287,15 +287,15 @@ session_start();
 
                 if (selectedCountryCode === '1') {
                     phoneInput.pattern = "[0-9]{10}";
-                    phoneInput.placeholder = "Enter 10-digit Phone Number";
+                    phoneInput.placeholder = "Enter 10-digit Phone No";
                     phoneInput.maxLength = "10";
                 } else if (selectedCountryCode === '44') {
                     phoneInput.pattern = "[0-9]{11}";
-                    phoneInput.placeholder = "Enter 11-digit Phone Number";
+                    phoneInput.placeholder = "Enter 11-digit Phone No";
                     phoneInput.maxLength = "11";
                 } else if (selectedCountryCode === '91') {
                     phoneInput.pattern = "[0-9]{10}";
-                    phoneInput.placeholder = "Enter 10-digit Phone Number";
+                    phoneInput.placeholder = "Enter 10-digit Phone No";
                     phoneInput.maxLength = "10";
                 }
                 // Add more conditions for other country codes
