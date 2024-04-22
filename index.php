@@ -192,8 +192,6 @@
 </head>
 
 <body>
-ujjjujujujujujujuj
-
     <div class="regform">
         <img src="vegasregistration.png" alt="">
         <form action="./backend/data.php" class="form" method="POST">
