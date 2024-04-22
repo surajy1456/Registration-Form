@@ -1,11 +1,11 @@
 <?php
+session_start();
 
 // print_r($_GET);
 // var_dump($_SERVER);
 
-print_r($_POST);
+// print_r($_POST);
 
-include 'connection.php';
 
 // $name = $_POST["name"];
 // $phone_number = $_POST["phone_number"];
@@ -13,19 +13,27 @@ include 'connection.php';
 // $telegram_id = $_POST["telegram_id"];
 // $facebook_id = $_POST["facebook_id"];
 
-if (isset($_POST['submit'])) {
+include 'connection.php';
+if (isset($_POST)) {
     $name = $_POST["name"];
     $phone_number = $_POST["phone_number"];
     $email = $_POST["email"];
     $telegram_id = $_POST["telegram_id"];
     $facebook_id = $_POST["facebook_id"];
 
-    $sql = "insert into `reg_user_data`(name,phone_number,email,telegram_id,facebook_id) values('$name','$phone_number','$email',' $telegram_id','$facebook_id')";
+    $sql = "INSERT INTO `reg_user_data`(name,phone_number,email,telegram_id,facebook_id) VALUES('$name','$phone_number','$email',' $telegram_id','$facebook_id')";
     $result = mysqli_query($conn, $sql);
     if ($result) {
-        echo "data inserted sucessfully";
+        
+        $_SESSION['toastr_message'] = "Congratulations 🥳, You have been Registered 🎉🎉";
+        $_SESSION['toastr_type'] = 'success';
+        header("Location: ../index.php"); 
+        exit();
     } else {
-        die(mysqli_error($conn));
+        $_SESSION['toastr_message'] = 'Something went Wrong 😢😣';
+        $_SESSION['toastr_type'] = 'alert';
+        header("Location: ../index.php?error=" . urlencode(mysqli_error($conn)));
+        exit();
     }
 }
 

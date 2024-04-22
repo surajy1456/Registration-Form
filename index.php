@@ -1,3 +1,10 @@
+<?php
+
+session_start();
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,6 +12,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reg Form</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
     <style>
         img {
             width: 1300px;
@@ -20,7 +30,7 @@
             margin-bottom: 10px;
         }
 
-       
+
 
         .btn {
             text-align: center;
@@ -51,10 +61,10 @@
 
         #phone_number {
             height: 60px;
-            width: 385px;
+            width: 325px;
             position: absolute;
             top: 406px;
-            left: 418px;
+            left: 480px;
             border-radius: 40px;
             border: transparent;
             background: transparent;
@@ -62,22 +72,23 @@
             padding-left: 23px;
             font-size: 30px;
         }
-        select{
-          background-color:black;
+
+        select {
+            background-color: black;
         }
 
         #country_code {
             height: 60px;
-            width: 60px;
+            width: 120px;
             position: absolute;
             top: 406px;
-            left: 345px;
+            left: 355px;
             border-radius: 40px;
             border: transparent;
             background: transparent;
             color: white;
             font-size: 20px;
-            text-align:center;
+            text-align: center;
         }
 
         #for_email {
@@ -151,61 +162,97 @@
         }
 
         @media (max-width: 1200px) {
-    /* Adjust form size */
-    .regform {
-        width: 80%;
-    }
 
-    /* Adjust input font size */
-    .form-control input,
-    .form-control select {
-        font-size: 18px;
-    }
-}
+            /* Adjust form size */
+            .regform {
+                width: 80%;
+            }
 
-@media (max-width: 768px) {
-    /* Adjust form size */
-    .regform {
-        width: 90%;
-    }
+            /* Adjust input font size */
+            .form-control input,
+            .form-control select {
+                font-size: 18px;
+            }
+        }
 
-    /* Adjust input font size */
-    .form-control input,
-    .form-control select {
-        font-size: 16px;
-    }
-}
+        @media (max-width: 768px) {
 
-@media (max-width: 480px) {
-    /* Adjust form size */
-    .regform {
-        width: 100%;
-    }
+            /* Adjust form size */
+            .regform {
+                width: 90%;
+            }
 
-    /* Adjust input font size */
-    .form-control input,
-    .form-control select {
-        font-size: 14px;
-    }
-}
+            /* Adjust input font size */
+            .form-control input,
+            .form-control select {
+                font-size: 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+
+            /* Adjust form size */
+            .regform {
+                width: 100%;
+            }
+
+            /* Adjust input font size */
+            .form-control input,
+            .form-control select {
+                font-size: 14px;
+            }
+        }
+
+        .toastr-timer {
+            width: 100%;
+            height: 4px;
+            background-color: black;
+            /* Change this to your desired color */
+            position: absolute;
+            bottom: 0;
+            left: 0;
+        }
+
+        .toastr-button {
+            display: block;
+            margin-top: 10px;
+            padding: 5px 10px;
+            background-color: green;
+            /* Change this to your desired color */
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .toastr-button:hover {
+            background-color: #0056b3;
+            /* Change this to your desired hover color */
+        }
+        option{
+            background-color: black; color: white;
+        }
     </style>
 </head>
 
+
+
+
+
 <body>
     <div class="regform">
-        <img src="vegasregistration.png" alt="">
+        <img src="vegasregistration.png" alt="" style="user-select: none;">
         <form action="./backend/data.php" class="form" method="POST">
             <div class="form-control">
                 <input type="text" name="name" id="for_name" placeholder="Name" required>
             </div>
             <div class="form-control">
-                <select id="country_code">
-                    <option>▼</option>
-                    <option value="1">USA (+1)</option>
-                    <option value="44">UK (+44)</option>
-                    <option value="91">IND (+91)</option>
+                <select id="country_code" style="background-color: none; color: white;">
+                    <option value="1" selected>USA (+1)</option>
+                    <option value="44" disabled hidden>UK (+44)</option>
+                    <option value="91" disabled hidden>IND (+91)</option>
                 </select>
-                <input type="text" name="phone_number" id="phone_number" placeholder="Phone Number" required>
+                <input type="text" name="phone_number" id="phone_number" placeholder="Enter 10-digit Phone Number" pattern="[0-9]{10}" maxlength="10" required>
             </div>
 
             <div class="form-control">
@@ -223,27 +270,63 @@
         </form>
     </div>
 
+
+
+
+
     <script>
-        document.getElementById('country_code').addEventListener('change', function() {
-            var selectedCountryCode = this.value;
+        document.addEventListener('DOMContentLoaded', function() {
+            var countryCodeSelect = document.getElementById('country_code');
             var phoneInput = document.getElementById('phone_number');
 
-            if (selectedCountryCode === '1') {
-                phoneInput.pattern = "[0-9]{10}";
-                phoneInput.placeholder = "Enter 10-digit Phone Number";
-                phoneInput.maxLength = "10";
-            } else if (selectedCountryCode === '44') {
-                phoneInput.pattern = "[0-9]{11}";
-                phoneInput.placeholder = "Enter 11-digit Phone Number";
-                phoneInput.maxLength = "11";
-            } else if (selectedCountryCode === '91') {
-                phoneInput.pattern = "[0-9]{10}";
-                phoneInput.placeholder = "Enter 10-digit Phone Number";
-                phoneInput.maxLength = "10";
-            }
-            // Add more conditions for other country codes
+            // Trigger change event on page load to apply default functionality
+            countryCodeSelect.dispatchEvent(new Event('change'));
+
+            countryCodeSelect.addEventListener('change', function() {
+                var selectedCountryCode = this.value;
+
+                if (selectedCountryCode === '1') {
+                    phoneInput.pattern = "[0-9]{10}";
+                    phoneInput.placeholder = "Enter 10-digit Phone Number";
+                    phoneInput.maxLength = "10";
+                } else if (selectedCountryCode === '44') {
+                    phoneInput.pattern = "[0-9]{11}";
+                    phoneInput.placeholder = "Enter 11-digit Phone Number";
+                    phoneInput.maxLength = "11";
+                } else if (selectedCountryCode === '91') {
+                    phoneInput.pattern = "[0-9]{10}";
+                    phoneInput.placeholder = "Enter 10-digit Phone Number";
+                    phoneInput.maxLength = "10";
+                }
+                // Add more conditions for other country codes
+            });
         });
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+    <?php
+    if (isset($_SESSION['toastr_message']) && isset($_SESSION['toastr_type'])) {
+        $toastr_message = $_SESSION['toastr_message'];
+        $toastr_type = $_SESSION['toastr_type'];
+        $toastr_duration = 5000; // Duration in milliseconds
+
+        // Display Toastr notification with time remaining
+        echo "<script>
+            toastr.options.timeOut = $toastr_duration;
+            toastr.$toastr_type('<div>$toastr_message</div><div class=\"toastr-timer\"></div>');
+            
+            // Update timer line width
+            var timerWidth = $('.toastr-timer').width();
+            $('.toastr-timer').animate({width: '0%'}, $toastr_duration);
+          </script>";
+
+        // Clear Toastr notification from session
+        unset($_SESSION['toastr_message']);
+        unset($_SESSION['toastr_type']);
+    }
+    ?>
+
 
 </body>
 
