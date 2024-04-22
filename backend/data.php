@@ -7,11 +7,11 @@
 
 include 'connection.php';
 
-$name = $_POST["name"];
-$phone_number = $_POST["phone_number"];
-$email = $_POST["email"];
-$telegram_id = $_POST["telegram_id"];
-$facebook_id = $_POST["facebook_id"];
+// $name = $_POST["name"];
+// $phone_number = $_POST["phone_number"];
+// $email = $_POST["email"];
+// $telegram_id = $_POST["telegram_id"];
+// $facebook_id = $_POST["facebook_id"];
 
 if (isset($_POST['submit'])) {
     $name = $_POST["name"];
@@ -20,7 +20,7 @@ if (isset($_POST['submit'])) {
     $telegram_id = $_POST["telegram_id"];
     $facebook_id = $_POST["facebook_id"];
 
-    $sql = "insert into `curd`(name,phone_number,email,telegram_id,facebook_id) values('$name','$phone_number','$email',' $telegram_id','$facebook_id')";
+    $sql = "insert into `reg_user_data`(name,phone_number,email,telegram_id,facebook_id) values('$name','$phone_number','$email',' $telegram_id','$facebook_id')";
     $result = mysqli_query($conn, $sql);
     if ($result) {
         echo "data inserted sucessfully";
