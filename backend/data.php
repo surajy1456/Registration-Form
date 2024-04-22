@@ -3,7 +3,7 @@
 // print_r($_GET);
 // var_dump($_SERVER);
 
-// print_r($_POST);
+print_r($_POST);
 
 include 'connection.php';
 
