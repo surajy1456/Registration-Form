@@ -151,48 +151,43 @@
         }
 
         @media (max-width: 1200px) {
-            .regform img {
-                width: 100%;
-                height: auto;
-            }
+    /* Adjust form size */
+    .regform {
+        width: 80%;
+    }
 
-            .form-control input,
-            .form-control select {
-                width: 100%;
-                padding: 10px;
-                font-size: 18px;
-            }
+    /* Adjust input font size */
+    .form-control input,
+    .form-control select {
+        font-size: 18px;
+    }
+}
 
-            #submit-button {
-                height: 50px;
-                top: 50%;
-                left: 50%;
-            }
-        }
+@media (max-width: 768px) {
+    /* Adjust form size */
+    .regform {
+        width: 90%;
+    }
 
-        @media (max-width: 768px) {
+    /* Adjust input font size */
+    .form-control input,
+    .form-control select {
+        font-size: 16px;
+    }
+}
 
-            .form-control input,
-            .form-control select {
-                font-size: 16px;
-            }
+@media (max-width: 480px) {
+    /* Adjust form size */
+    .regform {
+        width: 100%;
+    }
 
-            #submit-button {
-                height: 40px;
-            }
-        }
-
-        @media (max-width: 480px) {
-
-            .form-control input,
-            .form-control select {
-                font-size: 14px;
-            }
-
-            #submit-button {
-                height: 30px;
-            }
-        }
+    /* Adjust input font size */
+    .form-control input,
+    .form-control select {
+        font-size: 14px;
+    }
+}
     </style>
 </head>
 
